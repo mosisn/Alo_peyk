@@ -1,9 +1,11 @@
 from .models import OTP
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.contrib.auth.models import User
-import random 
 import json
+import random
+from .authentication import create_access_token, create_refresh_token
+from django.contrib.auth.models import User
+
 
 class OTPView(APIView):
 
@@ -17,7 +19,8 @@ class OTPView(APIView):
             otp = otp
         )
         return Response(otp)
-    
+
+
 class LoginView(APIView):
 
     def post(self, request):
@@ -26,14 +29,14 @@ class LoginView(APIView):
         phone = body['phone_number']
         otp = body['otp']
         try:
-            saved_otp = OTP.objects.get(phone_number = phone)
+            saved_otp = OTP.objects.get(phone_number=phone)
             if saved_otp.otp == otp:
                 saved_otp.delete()
                 try:
-                    current_user = User.objects.get(username = phone)
+                    current_user = User.objects.get(username=phone)
                 except:
                     current_user = User.objects.create(
-                        username = phone
+                        username = phone,
                     )
                 access_token = create_access_token(current_user.id)
                 refresh_token = create_refresh_token(current_user.id)
@@ -41,6 +44,7 @@ class LoginView(APIView):
                 res.set_cookie('refresh_token', refresh_token, httponly=True)
                 return res
             else:
-                return Response('OTP is WRONG!', status=403)
-        except:
-            return Response('some thing is wrong!', status=500)
+                return Response("Otp is Wrong!", status=403)
+        except Exception as e:
+            print(e)
+            return Response("Something is Wrong!", status=500)
