@@ -1,0 +1,27 @@
+getting location:
+
+GET:
+	https://api.neshan.org/v4/geocoding?address=ADDRESS
+Headers:
+	Api-Key: YOUR_API_KEY
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+getting duration:
+
+GET:
+    https://api.neshan.org/v1/distance-matrix?type=car&origins=36.3177579,59.5323219|36.337115,59.530621&destinations=36.35067,59.5451965|36.337005,59.530021
+Headers:
+    Api-Key: YOUR_API_KEY
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+more than one destination order:
+
+GET:
+	https://api.neshan.org/v3/trip?parameters
+Headers:
+	Api-Key: YOUR_API_KEY
+
+-----------------------------------------------------------------------------------------------------------------------------
+

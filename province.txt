@@ -1,0 +1,31 @@
+Alborz
+Ardabil
+Bushehr
+Chaharmahal and Bakhtiari
+East Azerbaijan
+Isfahan
+Fars
+Gilan
+Golestan
+Hamadan
+Hormozgan
+Ilam
+Kerman
+Kermanshah
+North Khorasan
+Razavi Khorasan
+South Khorasan
+Khuzestan
+Kohgiluyeh and Boyer-Ahmad
+Kurdistan
+Lorestan
+Markazi
+Mazandaran
+Qazvin
+Qom
+Semnan
+Sistan and Baluchestan
+Tehran
+West Azerbaijan
+Yazd
+Zanjan

@@ -25,6 +25,7 @@ class Origin(models.Model):
 
 
 class Destination(models.Model):
+    origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.PROTECT)
     address = models.TextField()
     name = models.CharField( max_length=50)
@@ -35,5 +36,10 @@ class Destination(models.Model):
 
 
 class Order(models.Model):
+    # User = 
+    # driver =
     origin = models.ForeignKey(Origin, on_delete=models.PROTECT)
-    destination = models.ForeignKey(Destination, on_delete=models.PROTECT)
+    destination = models.ManyToManyField(Destination)
+    duration  = models.CharField( max_length=50)
+    price = models.CharField( max_length=50)
+    No = models.CharField( max_length=5)
