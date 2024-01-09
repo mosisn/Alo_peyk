@@ -1,15 +1,5 @@
 from django.contrib.admin import ModelAdmin, register
-from .models import Province, City, Origin, Destination, Order
-
-
-@register(Province)
-class ProvinceAdmin(ModelAdmin):
-    pass
-
-
-@register(City)
-class CityAdmin(ModelAdmin):
-    pass
+from .models import  Origin, Destination, Order
 
 
 @register(Origin)
