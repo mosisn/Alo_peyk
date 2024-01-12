@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Origin(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     city = models.CharField(("Tehran"), max_length=50)
     address = models.TextField()
     name = models.CharField(max_length=50)
@@ -14,6 +15,7 @@ class Origin(models.Model):
 
 
 class Destination(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     origin = models.ManyToManyField(Origin)
     city = models.CharField(("Tehran"), max_length=50)
     address = models.TextField()
