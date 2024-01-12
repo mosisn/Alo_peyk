@@ -4,7 +4,7 @@ from rest_framework import status
 from user.authentication import JWTAuthentication
 from rest_framework import generics
 import random
-from .serializers import OrderSerializer
+from .serializers import OrderSerializer, OriginSerializer, DestinationSerializer
 
 
 def generate_tracking_code():
@@ -15,6 +15,31 @@ def generate_tracking_code():
     except:
         return random_code
     
+class CreateOrigin(generics.CreateAPIView):
+    queryset = Origin.objects.all()
+    serializer_class = OriginSerializer
+    authentication_classes = [JWTAuthentication,]
+
+    def list(self, request, *args, **kwargs):
+        self.queryset = Origin.objects.filter(user=request.user)
+        return super().list(request, *args, **kwargs)
+
+class CreateDestination(generics.CreateAPIView):
+    queryset = Destination.objects.all()
+    serializer_class = DestinationSerializer
+    authentication_classes = [JWTAuthentication,]
+
+    def list(self, request, *args, **kwargs):
+        self.queryset = Destination.objects.filter(user=request.user)
+        return super().list(request, *args, **kwargs)
+
+class OriginView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Origin.objects.all()
+    serializer_class = OriginSerializer
+
+class DestinationView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Destination.objects.all()
+    serializer_class = DestinationSerializer
 
 class OrderCreate(generics.CreateAPIView):
     queryset = Order.objects.all()
@@ -35,3 +60,12 @@ class OrderCreate(generics.CreateAPIView):
             user = request.user
         )
         return code
+
+class OrderView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    authentication_classes = [JWTAuthentication,]
+
+    def list(self, request, *args, **kwargs):
+        self.queryset = Order.objects.filter(user=request.user)
+        return super().list(request, *args, **kwargs)
