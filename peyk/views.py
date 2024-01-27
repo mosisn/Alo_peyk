@@ -5,7 +5,16 @@ from user.authentication import JWTAuthentication
 from rest_framework import generics
 import random
 from .serializers import OrderSerializer, OriginSerializer, DestinationSerializer
+import requests
 
+def get_address():
+    address = 'تهران، خ. هفده شهریور، بعد از چهارراه شکوفه'
+    url = f'https://api.neshan.org/v4/geocoding?address={address}'
+    api = requests.get(headers={'Api-key' : 'web.c2831504fd404ae6b5346f2b59272a6e'}, url=url).json()
+    return api
+
+    
+    
 
 def generate_tracking_code():
     random_code = random.randint(10000,99999)

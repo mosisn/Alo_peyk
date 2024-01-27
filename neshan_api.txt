@@ -1,7 +1,7 @@
 getting location:
 
 GET:
-	https://api.neshan.org/v4/geocoding?address=ADDRESS
+		
 Headers:
 	Api-Key: YOUR_API_KEY
 
@@ -25,3 +25,9 @@ Headers:
 
 -----------------------------------------------------------------------------------------------------------------------------
 
+getting LATITUDE and LONGITUDE
+
+GET:
+	https://api.neshan.org/v5/reverse?lat=LATITUDE&lng=LONGITUDE
+Headers:
+	Api-Key: YOUR_API_KEY
